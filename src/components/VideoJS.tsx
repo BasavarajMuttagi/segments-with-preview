@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 import 'videojs-contrib-eme'
+import 'videojs-sprite-thumbnails'
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'
 export const VideoJS = ( {options, onReady}:any) => {
@@ -29,16 +30,21 @@ export const VideoJS = ( {options, onReady}:any) => {
       const player = playerRef.current = videojs(videoElement, options, () => {
                 player.eme();
                 player.src({
-                    src: 'https://cdn.bitmovin.com/content/assets/art-of-motion_drm/mpds/11331.mpd',
-                    type: 'application/dash+xml',                    
-                    keySystems: {
-                      'com.widevine.alpha': 'https://cwip-shaka-proxy.appspot.com/no_auth',                     
-                    }
+                    // src: 'https://cdn.bitmovin.com/content/assets/art-of-motion_drm/mpds/11331.mpd',
+                    // type: 'application/dash+xml',                    
+                    // keySystems: {
+                    //   'com.widevine.alpha': 'https://cwip-shaka-proxy.appspot.com/no_auth',                     
+                    // }
 
-                    // src : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    src : "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                 });
 
-                
+                player.spriteThumbnails({
+                  interval: 1,
+                  url: 'src/components/thumbnails.jpg',
+                  width: 160,
+                  height: 90
+                })
 
 
         onReady && onReady(player);
@@ -69,7 +75,7 @@ export const VideoJS = ( {options, onReady}:any) => {
           chapter.style.width = (((eachSegment.endTime - eachSegment.startTime)/videoDuration) * 100) + '%'
           chapter.setAttribute("data-tooltip-id","my-tooltip");
           chapter.setAttribute("data-tooltip-content",eachSegment.message)
-          chapter.setAttribute("data-tooltip-offset",'50')
+          chapter.setAttribute("data-tooltip-offset",'110')
 
 
           segment.className = `bg-yellow-400 absolute`
@@ -109,7 +115,7 @@ export const VideoJS = ( {options, onReady}:any) => {
     <div data-vjs-player>
       <div ref={videoRef} >
       </div>
-      <Tooltip id='my-tooltip' />
+      <Tooltip arrowColor="transparent" id='my-tooltip' />
     </div>
   );
 }
