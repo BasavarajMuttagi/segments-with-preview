@@ -47,13 +47,6 @@ export default function Test() {
   return (
     <div className="p-5" id="parent">
         <div role="slider" className="w-full bg-gray-800 h-11 rounded-sm relative" id="progressbar"></div>
-        const videoTag = player.$('.vjs-tech') as HTMLElement;
-      const trackElement = document.createElement('track');
-      trackElement.setAttribute('kind', 'chapters');
-      trackElement.setAttribute('src', 'chapter.vtt');
-      trackElement.setAttribute('srclang', 'en');
-      trackElement.setAttribute('label', 'Chapters');
-      videoTag.appendChild(trackElement);
     </div>
   )
 }
