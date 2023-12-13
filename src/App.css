@@ -1,0 +1,14 @@
+.vjs-progress-holder {
+    position: relative;
+  }
+
+  .segment {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5px; /* Adjust the width of the segments */
+    background-color: #ff0000; /* Adjust the color of the segments */
+  }
+
+
+  
